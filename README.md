@@ -17,6 +17,11 @@ After you have cloned the file down, replace the #storyJson script tag with the 
 
 Load the page in a browser and whabam!! stories.
 
+Current Template Screenshot
+---------------------------
+
+![Current Template Screenshot Image](/images/current_template_screenshot.png "Current Template Screenshot")
+
 Contributing
 ------------
 
