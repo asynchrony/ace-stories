@@ -20,7 +20,7 @@ Load the page in a browser and whabam!! stories.
 Current Template Screenshot
 ---------------------------
 
-![Current Template Screenshot Image](/images/current_template_screenshot.png "Current Template Screenshot")
+![Current Template Screenshot Image](https://github.com/asynchrony/ace-stories/raw/master/images/current_template_screenshot.png "Current Template Screenshot")
 
 Contributing
 ------------
