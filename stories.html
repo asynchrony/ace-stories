@@ -1,184 +1,194 @@
 <html>
-  <head>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    <script type="text/javascript" src="https://raw.github.com/janl/mustache.js/master/mustache.js"></script>
+<head>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/janl/mustache.js/master/mustache.js"></script>
 
-    <script type="text/javascript" id='storyJson'>
-      [{"story":{"name":"story name","feature":"story feature","xpu":0.5,"description":"Change the cert and the password on the cert\r\n\r\nYou will have an email with the cert.","identifier":11122}}]
-    </script>
-
-    <script type="text/javascript">
-      $(function() {
-        var stories = jQuery.parseJSON($('#storyJson').text());
-        jQuery.each(stories, function() {
-          $('.stories').prepend(Mustache.to_html($('#storyTemplate').html(), this.story));
-        });
+  <script type="text/javascript">
+    $(function() {
+      $.each(stories(), function() {
+        $('.stories').prepend(Mustache.to_html($('#storyTemplate').html(), this.story));
       });
-    </script>
+    });
+
+    function stories() {
+      var storiesJSON;
+      $.ajax({
+        url: 'stories.json',
+        async: false,
+        dataType: 'json',
+        complete: function(jqXHR, textStatus) {
+          storiesJSON = $.parseJSON(jqXHR.responseText);
+        }
+      });
+      return storiesJSON;
+    }
+  </script>
 
 
-    <style type="text/css">
-      body {
-        font-family: georgia;
-      }
+  <style type="text/css">
+    body {
+      font-family: georgia;
+    }
 
-      .stories div {
-        overflow: hidden;
-      }
+    .stories div {
+      overflow: hidden;
+    }
 
-      .story {
-        width: 400px;
-        height: 300px;
-        border: 1px solid black;
-        position: relative;
-        margin: 10px;
-        float: left;
-      }
+    .story {
+      width: 400px;
+      height: 300px;
+      border: 1px solid black;
+      position: relative;
+      margin: 10px;
+      float: left;
+    }
 
-      .stories .story:nth-child(4n) {
-        display:block;
-        page-break-after: always;
-      }
+    .stories .story:nth-child(4n) {
+      display: block;
+      page-break-after: always;
+    }
 
-      .feature {
-        position: absolute;
-        font-size: 25px;
-        line-height: 40px;
-        font-weight: bold;
-        height: 40px;
-        top: 0px;
-        left: 0px;
-        padding: 0 10px;
-        width: 268px;
-        border: 1px solid black;
-        float: left;
-        display: block;
-      }
+    .feature {
+      position: absolute;
+      font-size: 25px;
+      line-height: 40px;
+      font-weight: bold;
+      height: 40px;
+      top: 0px;
+      left: 0px;
+      padding: 0 10px;
+      width: 268px;
+      border: 1px solid black;
+      float: left;
+      display: block;
+    }
 
-      .number {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        font-size: 25px;
-        line-height: 40px;
-        font-weight: bold;
-        padding: 0 10px;
-        height: 40px;
-        width: 88px;
-        border: 1px solid black;
-      }
+    .number {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      font-size: 25px;
+      line-height: 40px;
+      font-weight: bold;
+      padding: 0 10px;
+      height: 40px;
+      width: 88px;
+      border: 1px solid black;
+    }
 
-      .description {
-        position: absolute;
-        top: 40px;
-        left: 0px;
-        padding: 5px;
-        height: 178px;
-        border: 1px solid black;
-        right: 0px;
-      }
+    .description {
+      position: absolute;
+      top: 40px;
+      left: 0px;
+      padding: 5px;
+      height: 178px;
+      border: 1px solid black;
+      right: 0px;
+    }
 
-      .name {
-        font-size: 20px;
-        line-height: 40px;
-        font-weight: bold;
-      }
+    .name {
+      font-size: 20px;
+      line-height: 40px;
+      font-weight: bold;
+    }
 
-      .description pre {
-        font-size: 12px;
-        line-height: 18px;
-        font-family: georgia;
-        color: #222;
-        padding: 0;
-        margin: 0;
-        width: 398px;
-        
-        white-space: pre-wrap; /* css-3 */
-        white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
-        white-space: -pre-wrap; /* Opera 4-6 */
-        white-space: -o-pre-wrap; /* Opera 7 */
-        word-wrap: break-word; /* Internet Explorer 5.5+ */
-      }
+    .description pre {
+      font-size: 12px;
+      line-height: 18px;
+      font-family: georgia;
+      color: #222;
+      padding: 0;
+      margin: 0;
+      width: 398px;
 
-      .iteration {
-        position: absolute;
-        line-height: 26px;
-        color: #ccc;
-        text-align: center;
-        border: 1px solid black;
-        bottom: 42px;
-        width: 298px;
-        height: 26px;
-      }
+      white-space: pre-wrap; /* css-3 */
+      white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+      white-space: -pre-wrap; /* Opera 4-6 */
+      white-space: -o-pre-wrap; /* Opera 7 */
+      word-wrap: break-word; /* Internet Explorer 5.5+ */
+    }
 
-      .estimate {
-        position: absolute;
-        line-height: 26px;
-        height: 26px;
-        font-size: 18px;
-        border: 1px solid black;
-        right: 0px;
-        bottom: 42px;
-        width: 98px;
-        text-align: center;
-      }
+    .iteration {
+      position: absolute;
+      line-height: 26px;
+      color: #ccc;
+      text-align: center;
+      border: 1px solid black;
+      bottom: 42px;
+      width: 298px;
+      height: 26px;
+    }
 
-      .startDate, .endDate {
-        position: absolute;
-        height: 40px;
-        line-height: 40px;
-        color: #ccc;
-        text-align: center;
-        border: 1px solid black;
-        bottom: 0;
-        width: 198px;
-      }
+    .estimate {
+      position: absolute;
+      line-height: 26px;
+      height: 26px;
+      font-size: 18px;
+      border: 1px solid black;
+      right: 0px;
+      bottom: 42px;
+      width: 98px;
+      text-align: center;
+    }
 
-      .startDate {
-        left: 0;
-      }
+    .startDate, .endDate {
+      position: absolute;
+      height: 40px;
+      line-height: 40px;
+      color: #ccc;
+      text-align: center;
+      border: 1px solid black;
+      bottom: 0;
+      width: 198px;
+    }
 
-      .endDate {
-        right: 0;
-      }
+    .startDate {
+      left: 0;
+    }
+
+    .endDate {
+      right: 0;
+    }
 
       /* Our print drivers print grey as black so don't show these */
-      .endDate, .startDate, .iteration { text-indent: -3000px; }
-    </style>
-  </head>
-  <body>
-  <!--<div class='stories'>loading...</div>-->
-  <div class='stories'></div>
+    .endDate, .startDate, .iteration {
+      text-indent: -3000px;
+    }
+  </style>
+</head>
+<body>
+<div class='stories'>
+</div>
 
-    <script id='storyTemplate' type="text/mustache">
-      <div class='story'>
-        <div class='feature'>
-          {{feature}}
-        </div>
-        <div class='number'>
-          {{identifier}}
-        </div>
-        <div class='description'>
-          <div class='name'>
-            {{name}}
-          </div>
-          <div class="body">
-            <pre>{{description}}</pre>
-          </div>
-        </div>
-        <div class='iteration'>
-          iteration
-        </div>
-        <div class='estimate'>
-          {{xpu}} xp
-        </div>
-        <div class='startDate'>
-          start date
-        </div>
-        <div class='endDate'>
-          end date
-        </div>
+<script id='storyTemplate' type="text/mustache">
+  <div class='story'>
+    <div class='feature'>
+      {{feature}}
+    </div>
+    <div class='number'>
+      {{identifier}}
+    </div>
+    <div class='description'>
+      <div class='name'>
+        {{name}}
       </div>
-    </script>
-  </body>
+      <div class="body">
+        <pre>{{description}}</pre>
+      </div>
+    </div>
+    <div class='iteration'>
+      iteration
+    </div>
+    <div class='estimate'>
+      {{xpu}} xp
+    </div>
+    <div class='startDate'>
+      start date
+    </div>
+    <div class='endDate'>
+      end date
+    </div>
+  </div>
+</script>
+</body>
 </html>
