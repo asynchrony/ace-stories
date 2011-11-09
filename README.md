@@ -10,7 +10,6 @@ After you have cloned the repo down, replace the contents of stories.js with the
 
 ```javascript
 [{"story":{"name":"story name","feature":"story feature","xpu":0.5,"description":"Change the cert and the password on the cert to T1Dalph@\r\n\r\nYou will have an email with the cert.","identifier":11122}}] 
-</script>
 ```
 
 Load the page in a browser and whabam!! stories.
