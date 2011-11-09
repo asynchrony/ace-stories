@@ -6,11 +6,10 @@ Display ace stories using a custom template
 How do I use this?
 ------------------
 
-After you have cloned the file down, replace the #storyJson script tag with the ace stories formatted as JSON.
+After you have cloned the repo down, replace the contents of stories.js with the json stories you want to generate stories for.
 
 ```javascript
-<script type="text/javascript" id='storyJson'>
-  [{"story":{"name":"story name","feature":"story feature","xpu":0.5,"description":"Change the cert and the password on the cert to T1Dalph@\r\n\r\nYou will have an email with the cert.","identifier":11122}}] 
+[{"story":{"name":"story name","feature":"story feature","xpu":0.5,"description":"Change the cert and the password on the cert to T1Dalph@\r\n\r\nYou will have an email with the cert.","identifier":11122}}] 
 </script>
 ```
 
